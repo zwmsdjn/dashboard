@@ -15,7 +15,7 @@
 import resourceModule from 'common/resource/module';
 
 describe('Verber service', () => {
-  /** @type {!VerberService} */
+  /** @type !{!common/resource/verber_service.VerberService} */
   let verber;
   /** @type {!md.$dialog} */
   let mdDialog;
@@ -25,20 +25,16 @@ describe('Verber service', () => {
   let scope;
   /** @type {!ui.router.State} **/
   let state;
-  /** @type {!angular.$log} */
-  let log;
 
   beforeEach(() => angular.mock.module(resourceModule.name));
 
-  beforeEach(
-      angular.mock.inject((kdResourceVerberService, $mdDialog, $q, $rootScope, $state, $log) => {
-        verber = kdResourceVerberService;
-        mdDialog = $mdDialog;
-        q = $q;
-        scope = $rootScope.$new();
-        state = $state;
-        log = $log;
-      }));
+  beforeEach(angular.mock.inject((kdResourceVerberService, $mdDialog, $q, $rootScope, $state) => {
+    verber = kdResourceVerberService;
+    mdDialog = $mdDialog;
+    q = $q;
+    scope = $rootScope.$new();
+    state = $state;
+  }));
 
   it('should show delete dialog resource', (doneFn) => {
     let deferred = q.defer();
@@ -64,9 +60,7 @@ describe('Verber service', () => {
     spyOn(mdDialog, 'show').and.returnValue(deferred.promise);
     spyOn(state, 'reload');
     spyOn(mdDialog, 'alert').and.callThrough();
-    let promise = verber.showDeleteDialog('', {}, {}).catch((err) => {
-      log.error('Error showing delete dialog:', err);
-    });
+    let promise = verber.showDeleteDialog('', {}, {});
 
     deferred.reject({data: 'foo-data', statusText: 'foo-text'});
     deferred.promise.catch(doneFn);
@@ -102,9 +96,7 @@ describe('Verber service', () => {
     spyOn(mdDialog, 'show').and.returnValue(deferred.promise);
     spyOn(state, 'reload');
     spyOn(mdDialog, 'alert').and.callThrough();
-    let promise = verber.showEditDialog('Foo resource', {kind: 'bar'}, {}).catch((err) => {
-      log.error('Error showing edit dialog:', err);
-    });
+    let promise = verber.showEditDialog('Foo resource', {kind: 'bar'}, {});
 
     deferred.reject({data: 'foo-data', statusText: 'foo-text'});
     deferred.promise.catch(doneFn);

@@ -137,13 +137,9 @@ export default class DeployFromFileController {
             this.log_.error('Error deploying application:', err);
           });
 
-      defer.promise
-          .finally(() => {
-            this.isDeployInProgress_ = false;
-          })
-          .catch((err) => {
-            this.log_.error('Error:', err);
-          });
+      defer.promise.finally(() => {
+        this.isDeployInProgress_ = false;
+      });
 
       return defer.promise;
     }

@@ -158,7 +158,7 @@ describe('DeployFromFile controller', () => {
   });
 
   // TODO(maciaszczykm): Reenable this after fixing random flakes.
-  xit('should redeploy on deploy anyway', (doneFn) => {
+  xit('should redeploy on deploy anyway 123', (doneFn) => {
     let deferred = q.defer();
     spyOn(mdDialog, 'show').and.returnValue(deferred.promise);
     spyOn(mdDialog, 'confirm').and.callThrough();
@@ -184,8 +184,7 @@ describe('DeployFromFile controller', () => {
     expect(ctrl.deploy).toHaveBeenCalledTimes(2);
   });
 
-  // TODO(maciaszczykm): Reenable this after fixing 'Possibly unhandled rejection...'.
-  xit('should do nothing on cancel deploy anyway', (doneFn) => {
+  it('should do nothing on cancel deploy anyway', (doneFn) => {
     let deferred = q.defer();
     spyOn(mdDialog, 'show').and.returnValue(deferred.promise);
     spyOn(mdDialog, 'confirm').and.callThrough();

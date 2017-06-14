@@ -20,10 +20,9 @@ export class ResourceCardEditMenuItemController {
   /**
    * @param {!./../../resource/verber_service.VerberService} kdResourceVerberService
    * @param {!ui.router.$state} $state
-   * @param {!angular.$log} $log
    * @ngInject
    */
-  constructor(kdResourceVerberService, $state, $log) {
+  constructor(kdResourceVerberService, $state) {
     /**
      * Initialized from require just before $onInit is called.
      * @export {!./resourcecard_component.ResourceCardController}
@@ -38,9 +37,6 @@ export class ResourceCardEditMenuItemController {
 
     /** @private {!ui.router.$state}} */
     this.state_ = $state;
-
-    /** @private {!angular.$log} */
-    this.log_ = $log;
   }
 
   /**
@@ -53,9 +49,6 @@ export class ResourceCardEditMenuItemController {
         .then(() => {
           // For now just reload the state. Later we can update the item in place.
           this.state_.reload();
-        })
-        .catch((err) => {
-          this.log_.error('Error showing edit dialog:', err);
         });
   }
 }
